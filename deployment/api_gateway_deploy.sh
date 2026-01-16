@@ -1,0 +1,40 @@
+#!/bin/bash
+# API Gateway Deployment Script for Flask Application
+
+set -e
+
+echo "====================================="
+echo "API Gateway Deployment Configuration"
+echo "====================================="
+echo ""
+
+API_NAME="LuminaGalleryAPI"
+STAGE_NAME="prod"
+
+echo "This script provides the configuration for deploying your Flask API"
+echo "to AWS Lambda + API Gateway."
+echo ""
+echo "DEPLOYMENT OPTIONS:"
+echo "=================="
+echo ""
+echo "Option 1: Use AWS SAM (Serverless Application Model)"
+echo "  - Install AWS SAM CLI: https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/install-sam-cli.html"
+echo "  - Use the template.yaml provided in this directory"
+echo "  - Run: sam build && sam deploy --guided"
+echo ""
+echo "Option 2: Use Zappa (Python serverless framework)"
+echo "  - Install: pip install zappa"
+echo "  - Initialize: zappa init"
+echo "  - Deploy: zappa deploy production"
+echo ""
+echo "Option 3: Manual AWS Console Deployment"
+echo "  1. Create Lambda function with Flask app code"
+echo "  2. Create API Gateway REST API"
+echo "  3. Configure proxy integration to Lambda"
+echo "  4. Deploy API to stage"
+echo ""
+echo "For this project, we recommend using AWS SAM."
+echo "Template file: template.yaml"
+echo ""
+echo "After deployment, update frontend/.env with your API Gateway URL."
+echo ""

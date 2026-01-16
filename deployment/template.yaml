@@ -1,0 +1,107 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: Lumina Gallery API - Flask Application on Lambda + API Gateway
+
+Globals:
+  Function:
+    Timeout: 30
+    Runtime: python3.11
+    Environment:
+      Variables:
+        AWS_REGION: !Ref AWS::Region
+        S3_BUCKET_NAME: !Ref ImageBucket
+        DYNAMODB_TABLE_NAME: !Ref ImageTable
+
+Resources:
+  # S3 Bucket for Images
+  ImageBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Sub 'lumina-gallery-${AWS::AccountId}'
+      CorsConfiguration:
+        CorsRules:
+          - AllowedHeaders:
+              - '*'
+            AllowedMethods:
+              - GET
+              - PUT
+              - POST
+              - DELETE
+            AllowedOrigins:
+              - '*'
+            MaxAge: 3000
+
+  # DynamoDB Table for Metadata
+  ImageTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: LuminaGalleryImages
+      AttributeDefinitions:
+        - AttributeName: id
+          AttributeType: S
+      KeySchema:
+        - AttributeName: id
+          KeyType: HASH
+      BillingMode: PAY_PER_REQUEST
+
+  # Lambda Function for Image Processing
+  ImageProcessorFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: lumina-image-processor
+      CodeUri: ../backend/
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.11
+      MemorySize: 512
+      Timeout: 60
+      Policies:
+        - S3CrudPolicy:
+            BucketName: !Ref ImageBucket
+        - DynamoDBCrudPolicy:
+            TableName: !Ref ImageTable
+
+  # Lambda Function for Flask API
+  FlaskAPIFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: lumina-gallery-api
+      CodeUri: ../backend/
+      Handler: wsgi_handler.handler
+      Runtime: python3.11
+      MemorySize: 512
+      Timeout: 30
+      Policies:
+        - S3CrudPolicy:
+            BucketName: !Ref ImageBucket
+        - DynamoDBCrudPolicy:
+            TableName: !Ref ImageTable
+        - Statement:
+            - Effect: Allow
+              Action:
+                - lambda:InvokeFunction
+              Resource: !GetAtt ImageProcessorFunction.Arn
+      Events:
+        ApiRoot:
+          Type: Api
+          Properties:
+            Path: /
+            Method: ANY
+        ApiProxy:
+          Type: Api
+          Properties:
+            Path: /{proxy+}
+            Method: ANY
+
+Outputs:
+  ApiUrl:
+    Description: API Gateway endpoint URL
+    Value: !Sub 'https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/'
+  ImageBucketName:
+    Description: S3 bucket name for images
+    Value: !Ref ImageBucket
+  DynamoDBTableName:
+    Description: DynamoDB table name
+    Value: !Ref ImageTable
+  ImageProcessorFunctionArn:
+    Description: Image processor Lambda function ARN
+    Value: !GetAtt ImageProcessorFunction.Arn
