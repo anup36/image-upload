@@ -1,4 +1,5 @@
 import pytest
+import pytest_asyncio
 import os
 import sys
 from pathlib import Path
@@ -12,7 +13,7 @@ sys.path.insert(0, str(Path(__file__).parent.parent / 'backend'))
 from server import app, db, UPLOADS_DIR
 
 
-@pytest.fixture
+@pytest_asyncio.fixture
 async def client():
     """Create test client"""
     transport = ASGITransport(app=app)
