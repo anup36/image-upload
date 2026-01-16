@@ -1,0 +1,129 @@
+{
+  "identity": {
+    "name": "Lumina Gallery",
+    "persona": "E1: The Anti-AI Designer",
+    "tone": "Editorial, Minimalist, Precision, Art-First",
+    "description": "A high-performance, visually stunning image gallery that treats every upload like a piece of art. Clean lines, generous whitespace, and Swiss-style typography."
+  },
+  "typography": {
+    "primary_font": "Manrope",
+    "secondary_font": "Playfair Display",
+    "mono_font": "JetBrains Mono",
+    "scale": {
+      "h1": "text-5xl md:text-7xl font-serif tracking-tight leading-none",
+      "h2": "text-3xl md:text-5xl font-serif tracking-tight",
+      "h3": "text-2xl md:text-3xl font-sans font-medium tracking-tight",
+      "body": "text-base md:text-lg font-sans leading-relaxed text-muted-foreground",
+      "caption": "text-xs md:text-sm font-mono uppercase tracking-widest text-muted-foreground/80"
+    },
+    "imports": [
+      "@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400&display=swap');"
+    ]
+  },
+  "colors": {
+    "palette": {
+      "background": "#FFFFFF",
+      "foreground": "#0A0A0A",
+      "card": "#FFFFFF",
+      "card_foreground": "#0A0A0A",
+      "popover": "#FFFFFF",
+      "popover_foreground": "#0A0A0A",
+      "primary": "#0A0A0A",
+      "primary_foreground": "#FFFFFF",
+      "secondary": "#F4F4F5",
+      "secondary_foreground": "#18181B",
+      "muted": "#F4F4F5",
+      "muted_foreground": "#71717A",
+      "accent": "#F4F4F5",
+      "accent_foreground": "#18181B",
+      "destructive": "#EF4444",
+      "destructive_foreground": "#FAFAFA",
+      "border": "#E4E4E7",
+      "input": "#E4E4E7",
+      "ring": "#0A0A0A"
+    },
+    "custom_accents": {
+      "brand_blue": "#0055FF",
+      "gallery_overlay": "rgba(0, 0, 0, 0.4)"
+    },
+    "theme_strategy": "Light Mode Default. High contrast black on white. 'Swiss Style' aesthetic."
+  },
+  "layout": {
+    "grid_system": "Masonry / Waterfall",
+    "spacing": {
+      "container_padding": "p-6 md:p-12 lg:p-20",
+      "section_gap": "gap-8 md:gap-12",
+      "item_gap": "gap-6"
+    },
+    "container_width": "max-w-[1800px] mx-auto",
+    "border_radius": {
+      "default": "rounded-none",
+      "card": "rounded-sm",
+      "button": "rounded-full"
+    }
+  },
+  "components": {
+    "Button": {
+      "style": "rounded-full px-8 py-6 font-medium tracking-wide transition-all duration-300 hover:scale-105 active:scale-95",
+      "variants": {
+        "default": "bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg hover:shadow-xl",
+        "outline": "border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground",
+        "ghost": "hover:bg-secondary text-foreground"
+      }
+    },
+    "Card": {
+      "style": "group relative overflow-hidden bg-card transition-all duration-500 hover:shadow-2xl border-0",
+      "hover_effect": "scale-[1.02]"
+    },
+    "Input": {
+      "style": "h-12 rounded-none border-b-2 border-input bg-transparent px-0 py-2 text-lg focus-visible:border-primary focus-visible:ring-0 placeholder:text-muted-foreground/50 transition-colors"
+    },
+    "Dialog": {
+      "style": "sm:max-w-[600px] border-0 shadow-2xl bg-background/95 backdrop-blur-xl p-0 overflow-hidden"
+    }
+  },
+  "visual_enhancers": {
+    "glassmorphism": "backdrop-blur-xl bg-white/80 border border-white/20 shadow-sm",
+    "shadows": {
+      "soft": "shadow-[0_8px_30px_rgb(0,0,0,0.04)]",
+      "hover": "shadow-[0_8px_30px_rgb(0,0,0,0.12)]"
+    },
+    "animations": {
+      "hover_lift": "transition-transform duration-300 ease-out hover:-translate-y-1",
+      "fade_in": "animate-in fade-in duration-500 slide-in-from-bottom-4"
+    }
+  },
+  "image_urls": {
+    "architecture": [
+      "https://images.unsplash.com/photo-1602128110234-2d11c0aaadfe?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxNzV8MHwxfHNlYXJjaHwxfHxtaW5pbWFsaXN0JTIwYXJjaGl0ZWN0dXJlfGVufDB8fHx8MTc2ODU3Njk3NHww&ixlib=rb-4.1.0&q=85",
+      "https://images.unsplash.com/photo-1483366774565-c783b9f70e2c?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxNzV8MHwxfHNlYXJjaHwyfHxtaW5pbWFsaXN0JTIwYXJjaGl0ZWN0dXJlfGVufDB8fHx8MTc2ODU3Njk3NHww&ixlib=rb-4.1.0&q=85",
+      "https://images.unsplash.com/photo-1534094830444-3a1e21f7e3e7?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxNzV8MHwxfHNlYXJjaHwzfHxtaW5pbWFsaXN0JTIwYXJjaGl0ZWN0dXJlfGVufDB8fHx8MTc2ODU3Njk3NHww&ixlib=rb-4.1.0&q=85",
+      "https://images.unsplash.com/photo-1549791084-5f78368b208b?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxNzV8MHwxfHNlYXJjaHw0fHxtaW5pbWFsaXN0JTIwYXJjaGl0ZWN0dXJlfGVufDB8fHx8MTc2ODU3Njk3NHww&ixlib=rb-4.1.0&q=85"
+    ],
+    "nature": [
+      "https://images.unsplash.com/photo-1656499438865-8ced7f4aa3fa?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxOTJ8MHwxfHNlYXJjaHwxfHxhYnN0cmFjdCUyMG5hdHVyZSUyMHRleHR1cmV8ZW58MHx8fHwxNzY4NTc2OTc2fDA&ixlib=rb-4.1.0&q=85",
+      "https://images.unsplash.com/photo-1661422966531-27545db2d32e?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxOTJ8MHwxfHNlYXJjaHwyfHxhYnN0cmFjdCUyMG5hdHVyZSUyMHRleHR1cmV8ZW58MHx8fHwxNzY4NTc2OTc2fDA&ixlib=rb-4.1.0&q=85",
+      "https://images.unsplash.com/photo-1651753133883-7e25c3d1a1e6?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxOTJ8MHwxfHNlYXJjaHwzfHxhYnN0cmFjdCUyMG5hdHVyZSUyMHRleHR1cmV8ZW58MHx8fHwxNzY4NTc2OTc2fDA&ixlib=rb-4.1.0&q=85"
+    ],
+    "urban": [
+      "https://images.unsplash.com/photo-1762436933065-fe6d7f51d4f3?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1NzZ8MHwxfHNlYXJjaHwxfHx1cmJhbiUyMHN0cmVldCUyMHBob3RvZ3JhcGh5fGVufDB8fHx8MTc2ODU3Njk3OXww&ixlib=rb-4.1.0&q=85",
+      "https://images.unsplash.com/photo-1708004228425-85703b49692e?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1NzZ8MHwxfHNlYXJjaHwyfHx1cmJhbiUyMHN0cmVldCUyMHBob3RvZ3JhcGh5fGVufDB8fHx8MTc2ODU3Njk3OXww&ixlib=rb-4.1.0&q=85",
+      "https://images.unsplash.com/photo-1603747967775-9e2ff1a7d646?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1NzZ8MHwxfHNlYXJjaHwzfHx1cmJhbiUyMHN0cmVldCUyMHBob3RvZ3JhcGh5fGVufDB8fHx8MTc2ODU3Njk3OXww&ixlib=rb-4.1.0&q=85"
+    ]
+  },
+  "instructions_to_main_agent": [
+    "1. SETUP: Install 'lucide-react' for icons. Use 'sonner' for toasts.",
+    "2. LAYOUT: Implement a responsive Masonry grid for the main gallery. Do NOT use a simple flex wrap. Use CSS columns (column-count-1 md:column-count-2 lg:column-count-3) for a true waterfall effect.",
+    "3. UPLOAD: Create a 'Drag & Drop' zone that feels premium. Use a dashed border that becomes solid and colored on drag-over. Show a progress bar for uploads.",
+    "4. VIEWER: The image viewer should be a full-screen modal with a blurred backdrop. The image should be 'contain' fit. Metadata (tags, date) should be minimal and placed at the bottom or side.",
+    "5. TYPOGRAPHY: Use 'Playfair Display' for the main 'Gallery' heading to give it an editorial feel. Use 'Manrope' for all UI text.",
+    "6. INTERACTIONS: Add hover effects to images - show a subtle gradient overlay with the 'Download' and 'Delete' buttons appearing on hover.",
+    "7. DATA-TESTID: Ensure every interactive element (buttons, inputs, cards) has a 'data-testid' attribute."
+  ],
+  "universal_guidelines": [
+    "Avoid 'AI Slop': No generic gradients, no centered text blocks without purpose.",
+    "Spacing: Use generous padding (p-8, p-12). Don't cram content.",
+    "Motion: Add 'layout' prop to Framer Motion components for smooth reordering when filtering.",
+    "Accessibility: Ensure high contrast for text. Use aria-labels for icon-only buttons."
+  ]
+}
