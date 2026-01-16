@@ -40,6 +40,11 @@
   background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
   opacity: 0;
   transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.image-overlay > * {
+  pointer-events: auto;
 }
 
 .image-card:hover .image-overlay {
