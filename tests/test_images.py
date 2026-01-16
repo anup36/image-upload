@@ -6,26 +6,41 @@ from pathlib import Path
 from httpx import AsyncClient, ASGITransport
 from io import BytesIO
 from PIL import Image
+from motor.motor_asyncio import AsyncIOMotorClient
 
 # Add backend to path
 sys.path.insert(0, str(Path(__file__).parent.parent / 'backend'))
 
-from server import app, db, UPLOADS_DIR
+from server import app, UPLOADS_DIR
 
 
 @pytest_asyncio.fixture
 async def client():
-    """Create test client"""
+    """Create test client with fresh database connection"""
+    # Create a fresh Motor client for this test
+    test_mongo_url = os.environ.get('MONGO_URL', 'mongodb://localhost:27017')
+    test_db_name = os.environ.get('DB_NAME', 'test_database')
+    test_client = AsyncIOMotorClient(test_mongo_url)
+    test_db = test_client[test_db_name]
+    
     transport = ASGITransport(app=app)
     async with AsyncClient(transport=transport, base_url="http://test") as ac:
         yield ac
-    # Cleanup: delete test images from disk only (db cleanup skipped due to event loop issues)
+    
+    # Cleanup: delete test images from database and disk
+    try:
+        await test_db.images.delete_many({})
+    except:
+        pass
+    
     for file in UPLOADS_DIR.glob("*"):
         if file.is_file():
             try:
                 file.unlink()
             except:
                 pass
+    
+    test_client.close()
 
 
 def create_test_image():
